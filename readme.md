@@ -2,6 +2,10 @@
 
 Slate is a framework geared towards simplifying common WordPress development tasks such as creating post types or taxonomies. It also features integration with the [Advanced Custom Fields](http://advancedcustomfields.com/) plugin.
 
+## Slate Constants
+
+The `slate-constants.php` file contains several predefined PHP constants for use in themes and plugins. Some of the directory and URL dependant constants may need to be altered depending on theme structure.
+
 ## Creating a Post Type
 
 ```
