@@ -1,6 +1,6 @@
 # Slate
 
-Slate is a framework geared towards simplifying common WordPress development tasks such as creating post types or taxonomies.
+Slate is a framework geared towards simplifying common WordPress development tasks such as creating post types or taxonomies. It also features integration with the [Advanced Custom Fields](http://advancedcustomfields.com/) plugin.
 
 ## Creating a Post Type
 
@@ -70,6 +70,10 @@ The above code would create a taxonomy where the terms act as tags instead of ca
 A few defaults are set by the Slate_Taxonomy class which are different from the WordPress defaults:
 
 * The `hierarchical` argument is automatically set to true since most times a taxonomy is preferred to act as a category.
+
+## Advanced Custom Fields Integration
+
+Slate integrates with the Advanced Custom Fields plugin, although having ACF enabled is not a requirement to use Slate. Version 5 of ACF allows for local storage of JSON field data to sync custom fields between different environments (local, staging, production, etc.) Slate changes the save and load points so the field data is automatically stored in the Slate plugin directory instead of the theme. This way if they change the theme the field JSON data isn't made irrelevant.
 
 ## Extra Functionality
 
