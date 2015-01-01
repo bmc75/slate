@@ -1,10 +1,102 @@
 # Slate
 
-Slate is a framework geared towards simplifying common WordPress development tasks such as creating post types or taxonomies. It also features integration with the [Advanced Custom Fields](http://advancedcustomfields.com/) plugin.
+Slate is a framework geared towards simplifying common WordPress development tasks such as loading CSS or JavaScript and creating post types or taxonomies. It also features integration with the [Advanced Custom Fields](http://advancedcustomfields.com/) plugin.
 
 ## Slate Constants
 
 The `slate-constants.php` file contains several predefined PHP constants for use in themes and plugins. Some of the directory and URL dependant constants may need to be altered depending on theme structure.
+
+## Asset Loading
+
+To utilize Slate's asset loading simply instantiate the `Slate_CSS`, `Slate_Jquery` or `Slate_JS` classes within the [wp_enqueue_scripts](http://codex.wordpress.org/Plugin_API/Action_Reference/wp_enqueue_scripts) hook. Example:
+
+```
+add_action('wp_enqueue_scripts', 'slate_load_assets');
+function slate_load_assets() {
+
+    new Slate_CSS('style.css');
+    new Slate_CSS('buttons.css');
+
+    new Slate_Jquery;
+    new Slate_JS('script.js');
+    new Slate_JS('slider.js');
+
+}
+```
+
+### CSS
+
+By default Slate will load a CSS file by looking in the directory specified in the URL of the constant `_css_uri` in the `slate-constants.php` file. For example if there is a file called `stylesheet.css` located there, you can load it by calling Slate_CSS:
+
+```
+new Slate_CSS('stylesheet.css');
+```
+
+If the `_css_uri` is for example `http://url-to-my-theme.com/css` then it will try loading this file: `http://url-to-my-theme.com/css/stylesheet.css`.
+
+You also have full access to the parameters of [wp_enqueue_style](http://codex.wordpress.org/Function_Reference/wp_enqueue_style):
+
+```
+new Slate_CSS('stylesheet.css', array(
+    'handle' => 'main-stylesheet',
+    'src'    => 'http://source-url.com/style.css',
+    'ver'    => '2.0'
+));
+```
+
+Using a third parameter you can tell Slate to try loading the file from the vendor directory URL as specified by the `_vendor_uri` constant in `slate-constants.php`:
+
+```
+new Slate_CSS('stylesheet.css', array(
+    'handle' => 'main-stylesheet',
+    'src'    => 'http://source-url.com/style.css',
+    'ver'    => '2.0'
+), true);
+```
+
+By setting the third parameter to true Slate will now set the base URL to the vendor directory.
+
+### jQuery
+
+Slate includes a special class for removing the default WordPress jQuery and loading it from the [Google CDN](https://developers.google.com/speed/libraries/devguide). Simply add the following:
+
+```
+new Slate_Jquery;
+```
+
+### JavaScript
+
+By default Slate will load a JavaScript file by looking in the directory specified in the URL of the constant `_js_uri` in the `slate-constants.php` file. For example if there is a file called `script.js` located there, you can load it by calling Slate_JS:
+
+```
+new Slate_JS('script.js');
+```
+
+If the `_js_uri` is for example `http://url-to-my-theme.com/js` then it will try loading this file: `http://url-to-my-theme.com/js/script.js`.
+
+You also have full access to the parameters of [wp_enqueue_script](http://codex.wordpress.org/Function_Reference/wp_enqueue_script):
+
+```
+new Slate_JS('script.js', array(
+    'handle' => 'main-script',
+    'src'    => 'http://source-url.com/script.js',
+    'ver'    => '4.0'
+));
+```
+
+Note: By default WordPress sets the in_footer parameter to false. Slate automatically sets it to true unless you override it with the arguments parameter.
+
+Using a third parameter you can tell Slate to try loading the file from the vendor directory URL as specified by the `_vendor_uri` constant in `slate-constants.php`:
+
+```
+new Slate_JS('script.js', array(
+    'handle' => 'main-script',
+    'src'    => 'http://source-url.com/script.js',
+    'ver'    => '4.0'
+), true);
+```
+
+By setting the third parameter to true Slate will now set the base URL to the vendor directory.
 
 ## Creating a Post Type
 

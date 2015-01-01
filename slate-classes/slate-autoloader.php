@@ -27,25 +27,30 @@ class Slate_Autoloader {
 
     static public function loader($class_name) {
 
-        $filename = slate_classes . '/' . str_replace('_', '-', $class_name) . '.php';
-        $filename_alt = slate_custom . '/' . str_replace('_', '-', $class_name) . '.php';
+        // Make sure that the autoloader is only loading classes that belong to Slate.
+        if(strstr($class_name, "Slate_")) {
 
-        if(file_exists($filename)) {
+            $filename = slate_classes . '/' . str_replace('_', '-', $class_name) . '.php';
+            $filename_alt = slate_custom . '/' . str_replace('_', '-', $class_name) . '.php';
 
-            include_once $filename;
+            if(file_exists($filename)) {
 
-            if(class_exists($class_name)) {
-                return true;
+                include_once $filename;
+
+                if(class_exists($class_name)) {
+                    return true;
+                }
+
             }
 
-        }
+            if(file_exists($filename_alt)) {
 
-        if(file_exists($filename_alt)) {
+                include_once $filename_alt;
 
-            include_once $filename_alt;
+                if(class_exists($class_name)) {
+                    return true;
+                }
 
-            if(class_exists($class_name)) {
-                return true;
             }
 
         }
