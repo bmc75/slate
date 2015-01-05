@@ -40,6 +40,7 @@ class Slate_CSS {
 
         $this->file = $file;
         $this->args = $args;
+        $this->vendor = $vendor;
 
         // Set default parameters.
         $this->set_defaults();
