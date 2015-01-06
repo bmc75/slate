@@ -67,6 +67,13 @@ define('_template_uri', get_template_directory_uri());
 define('_template_dir', get_template_directory());
 
 /**
+ * The path to the theme classes.
+ *
+ * @since 1.0
+ */
+define('theme_classes', _template_dir . '/classes');
+
+/**
  * The URL to the active theme's assets directory.
  *
  * @since 1.0
