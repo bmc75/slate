@@ -22,14 +22,14 @@ define('slate_path', plugin_dir_path(__FILE__));
  *
  * @since 1.0
  */
-define('slate_classes', slate_path . '/slate-classes');
+define('slate_classes', slate_path . 'slate-classes');
 
 /**
  * The path to the Slate custom directory.
  *
  * @since 1.0
  */
-define('slate_custom', slate_path . '/slate-custom');
+define('slate_custom', slate_path . 'slate-custom');
 
 /**
  * The blog title.
@@ -71,7 +71,7 @@ define('_template_dir', get_template_directory());
  *
  * @since 1.0
  */
-define('theme_classes', _template_dir . '/classes');
+define('theme_classes', _template_dir . 'classes');
 
 /**
  * The URL to the active theme's assets directory.
