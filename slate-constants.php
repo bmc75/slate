@@ -71,7 +71,7 @@ define('_template_dir', get_template_directory());
  *
  * @since 1.0
  */
-define('theme_classes', _template_dir . 'classes');
+define('theme_classes', _template_dir . '/classes');
 
 /**
  * The URL to the active theme's assets directory.
