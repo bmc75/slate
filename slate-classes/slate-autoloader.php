@@ -30,8 +30,8 @@ class Slate_Autoloader {
         // Make sure that the autoloader is only loading classes that belong to Slate.
         if(strstr($class_name, "Slate_")) {
 
-            $filename = slate_classes . '/' . str_replace('_', '-', $class_name) . '.php';
-            $filename_alt = slate_custom . '/' . str_replace('_', '-', $class_name) . '.php';
+            $filename = slate_classes . '/' . strtolower(str_replace('_', '-', $class_name)) . '.php';
+            $filename_alt = slate_custom . '/' . strtolower(str_replace('_', '-', $class_name)) . '.php';
 
             if(file_exists($filename)) {
 
@@ -56,9 +56,9 @@ class Slate_Autoloader {
         }
 
         // Slate can also autoload classes for the Onyx companion theme.
-        if(strstr($class_name, 'Onyx_')) {
+        if(strstr($class_name, 'UG_')) {
 
-            $filename = theme_classes . '/' . str_replace('_', '-', $class_name) . '.php';
+            $filename = theme_classes . '/' . strtolower(str_replace('_', '-', $class_name)) . '.php';
 
             if(file_exists($filename)) {
 
