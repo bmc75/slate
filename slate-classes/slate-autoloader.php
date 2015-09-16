@@ -56,7 +56,7 @@ class Slate_Autoloader {
         }
 
         // Slate can also autoload classes for the Onyx companion theme.
-        if(strstr($class_name, 'UG_')) {
+        if(strstr($class_name, 'Onyx_')) {
 
             $filename = theme_classes . '/' . strtolower(str_replace('_', '-', $class_name)) . '.php';
 

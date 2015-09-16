@@ -55,3 +55,67 @@ function _log($input) {
     error_log(print_r($input, true));
 
 }
+
+function wp_get_thumbnail_url($post_id, $size="full") {
+
+    $thumb_id = get_post_thumbnail_id($post_id);
+    $thumb_url_array = wp_get_attachment_image_src($thumb_id, $size);
+    $thumb_url = $thumb_url_array[0];
+
+    return $thumb_url;
+
+}
+
+function bg_style($image) {
+
+    if(isset($image['url'])) {
+
+        return 'background-image: url(' . $image['url'] . ');';
+
+    }
+
+    return;
+
+}
+
+function silo($fields, $prefix="", $option="", $post_id="") {
+
+    $silo = array();
+
+    if(is_array($fields)) {
+
+        foreach($fields as $field) {
+
+            $field_value = '';
+
+            if($prefix) {
+
+                $field_value .= $prefix;
+
+            }
+
+            $field_value .= $field;
+
+            if($option) {
+
+                $silo[$field] = get_field($field_value, 'option');
+
+            } elseif($post_id) {
+
+                $silo[$field] = get_field($field_value, $post_id);
+
+            } else {
+
+                $silo[$field] = get_field($field_value);
+
+            }
+
+        }
+
+        return $silo;
+
+    }
+
+    return;
+
+}
